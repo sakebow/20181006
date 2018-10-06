@@ -1,0 +1,138 @@
+﻿@using aspnet.DBClasses
+@{
+    ViewBag.Title = "主页";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北大学学生成绩管理系统</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/_LayoutHeader.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="stylesheet" href="~/Content/blur.css" />
+    <link rel="stylesheet" href="~/Content/news_center.css" />
+    <script type="text/javascript" src="~/scripts/roll.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            RollRight();
+            OnLoadSetHeight();
+            ResizeColumn();
+        }
+        window.onresize = ResizeColumn;
+    </script>
+</head>
+
+<div class="blur-bg">
+    @*模糊效果背景图片*@
+    <img src="~/images/backgrounds/hubu.jpg" />
+    <div class="blur-column">
+        @*左模糊*@
+        <div class="blur-block left"></div>
+        @*中间的轮播模块*@
+        <div class="blur-roll left">
+            @*长条轮播图*@
+            <div class="roll-list" id="roll" style="left: 0;">
+                @*五张图*@
+                <div class="roll-blocks left">
+                    <img src="~/images/rolling/azuki.jpg" />
+                </div>
+                <div class="roll-blocks left">
+                    <img src="~/images/rolling/cinnamon.jpg" />
+                </div>
+                <div class="roll-blocks left">
+                    <img src="~/images/rolling/maple.jpg" />
+                </div>
+                <div class="roll-blocks left">
+                    <img src="~/images/rolling/nova.jpeg" />
+                </div>
+                <div class="roll-blocks left">
+                    <img src="~/images/backgrounds/hubu.jpg" />
+                </div>
+            </div>
+        </div>
+        @*右模糊*@
+        <div class="blur-block right"></div>
+    </div>
+</div>
+<div class="blur-bg">
+    @*右滑动*@
+    <div class="left-arrow arrow left" onclick="RollLeft()"><</div>
+    @*左滑动*@
+    <div class="right-arrow arrow right" onclick="RollRight()">></div>
+    @*索引*@
+    <div class="roll-list-index">
+        <div class="roll-blocks-index right" id="5">5</div>
+        <div class="roll-blocks-index right" id="4">4</div>
+        <div class="roll-blocks-index right" id="3">3</div>
+        <div class="roll-blocks-index right" id="2">2</div>
+        <div class="roll-blocks-index right chosen" id="1">1</div>
+    </div>
+</div>
+@*强行占位，挤开新加入的元素*@
+<div class="blur-clear"></div>
+<!--新闻模块-->
+<div class="news-center" style="height: auto;">
+    <!--左侧的新闻模块-->
+    <div class="news-column left">
+        <!--蓝色标题-->
+        <div class="column-header">
+            新闻
+            <a class="more right">查看更多>></a>
+        </div>
+        <!--白色主体-->
+        <div class="column-body">
+            <!--新闻条目-->
+            <ul class="news-list">
+                @foreach (var item in (List<News>)ViewData["news"])
+                {
+                    <li>
+                        <div class="news-title left">@item.新闻标题</div>
+                        <div class="news-time right">@item.发布时间.ToString().Split(new char[1] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0]</div>
+                        <div class="clearfix"></div>
+                    </li>
+                }
+                
+            </ul>
+        </div>
+    </div>
+    <!--中央模块-->
+    <div class="news-middle left">
+        <!--视频模块-->
+        <div class="news-column search" style="height:auto;">
+            <!--蓝色标题-->
+            <div class="column-header">
+                宣传PV
+                <a class="more right">查看更多>></a>
+            </div>
+            <!--白色主体-->
+            <div class="column-body">
+                <div class="video-column">
+                    <video src="~/videos/pv2_2500.mp4" autoplay="autoplay" loop="loop" controls="controls" @*muted="muted"*@></video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧公告模块-->
+    <div class="news-column right">
+        <!--蓝色标题-->
+        <div class="column-header">
+            公告
+            <a class="more right" href="#2">查看更多>></a>
+        </div>
+        <!--白色主体-->
+        <div class="column-body">
+            <ul class="news-list">
+                @foreach (var item in (List<Notice>)ViewData["notice"])
+                {
+                    <li>
+                        <div class="news-title left">@item.公告标题</div>
+                        <div class="news-time right">@item.修改时间.ToString().Split(new char[1] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0]</div>
+                        <div class="clearfix"></div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

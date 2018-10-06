@@ -1,0 +1,18 @@
+﻿label{
+    font-size: 1.5em;
+}
+.right-body{
+    width: 80%;
+    float: left;
+    padding: 1.5em;
+}
+.table-struct{
+    width: 90%;
+    height: 40%;
+    margin: 0 auto;
+}
+.detail-editor{
+    width: 90%;
+    height: 40%;
+    margin: 0 auto;
+}

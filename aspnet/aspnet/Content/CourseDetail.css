@@ -1,0 +1,29 @@
+﻿.div-type {
+    margin: 15em 10em;
+    float: left;
+}
+
+.img-frame {
+    width: 13em;
+    height: 13em;
+    /*background-color: red;*/
+    box-shadow: 0.2em 0.2em 0.2em rgba(0,0,0,0.4);
+    position: absolute;
+    right: 0;
+    top: 10em;
+}
+
+.img-frame img {
+    width: 13em;
+    height: 13em;
+    transition: all 0.4s;
+}
+
+.img-frame img:hover {
+        transform: scale(1.2);
+    }
+
+.bottom:hover {
+    color: blue;
+    cursor: pointer;
+}

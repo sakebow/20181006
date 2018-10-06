@@ -1,0 +1,47 @@
+﻿@model System.Data.Entity.Infrastructure.DbQuery<aspnet.Models.课程表>
+@{
+    ViewBag.Title = "管理员 - 查看课程";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/showCourse.css" />
+    <script>
+        function LimitSize() {
+            for (var i = 0; i < document.getElementsByClassName("course-frame").length; i++) {
+                document.getElementsByClassName("course-frame")[i].style.height = document.getElementsByClassName("course-info")[0].offsetHeight + 'px';
+            }
+        }
+        window.onload = LimitSize;
+        window.onresize = LimitSize;
+    </script>
+</head>
+<div class="right-body">
+    <h2>查看课程</h2>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="course-frame">
+            <div class="course-img">
+                <img src="~/images/CourseBooks/@item.教材图片路径" />
+            </div>
+            <ul class="course-info">
+                <li class="instruct">课程名称：@item.课程名称</li>
+                <li class="instruct">出版社：</li>
+                <li class="instruct">课程学分：@item.课程学分</li>
+                <li class="operation">
+                    @Html.ActionLink("修改", "EditCourse", new { cno = item.课程编号})
+                </li>
+                <li class="operation" style="color: red;">
+                    @Html.ActionLink("删除", "DeleteCourse", new { cno = item.课程编号},  new { @onclick = "return confirm('确认删除？')"})
+                </li>
+                <li class="operation">
+                    @Html.ActionLink("详情", "CourseDetail", new { cno = item.课程编号})
+                </li>
+            </ul>
+            <div class="course-detail">@item.课程简介</div>
+            <div class="clearfix"></div>
+        </div>
+    }
+</div>
+

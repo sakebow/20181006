@@ -1,0 +1,31 @@
+﻿/* 管理员新闻中心展示边框 */
+.news-frame{
+    width: 90%;
+    height: 20%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    border: solid 0.1em white;
+    border-radius: 0.3em;
+}
+/* 新闻块 */
+.news-part{
+    width : 70%;
+    height: 100%;
+    float : left;
+}
+/* 新闻操作 */
+.news-operate{
+    width : 30%;
+    height: 100%;
+    float : left;
+}
+/* 新闻标题 */
+.news-title{
+    width: 45%;
+    overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+    font-size: 1.5em;
+    height: 30%;
+    font-weight: 800;
+}

@@ -1,0 +1,22 @@
+﻿@model aspnet.Models.课程表
+@{
+    ViewBag.Title = "CourseDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/CourseDetail.css" />
+    <link rel="stylesheet" href="~/Content/showCourse.css" />
+</head>
+<div class="right-body">
+    <h2>课程详情</h2>
+    <hr />
+    <h1><a href="#">@Model.课程名称</a></h1>
+    @Model.课程简介
+    <div class="img-frame div-type">
+        <img src="~/images/CourseBooks/@Model.教材图片路径" />
+        <span class="bottom">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.教材出版社</span>
+    </div>
+</div>
+
+

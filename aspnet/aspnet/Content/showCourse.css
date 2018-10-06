@@ -1,0 +1,61 @@
+﻿.right-body{
+    width: 80%;
+    float: left;
+}
+.course-frame{
+    width : 95%;
+    margin: 0 auto;
+    height: 20%;
+    border-left: solid 0.2em white;
+    border-right: solid 0.2em white;
+    border-top : solid 0.05em black;
+    border-bottom: solid 0.05em black;
+}
+.course-img{
+    width : 17%;
+    height: 100%;
+    float: left;
+    border-right : solid 0.01em black;
+    overflow: hidden;
+}
+.course-img img{
+    height: 100%;
+}
+.course-info{
+    width : 23%;
+    height:100%;
+    float :left;
+    padding: 0;
+    border-right: solid 0.01em black;
+    margin : 0;
+}
+.course-info li{
+    padding: 0.3em;
+    height:25%;
+    list-style-type: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.125em;
+}
+.course-detail{
+    text-indent: 2em;
+    width : 60%;
+    height:100%;
+    float :left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.instruct{
+    border-bottom: dashed 0.1em black;
+}
+.operation{
+    float:left;
+    width:33.33%;
+    cursor: pointer;
+    border-right: dotted 0.1em black;
+    text-align:center;
+}
+.operation:hover{
+    text-decoration: underline;
+}

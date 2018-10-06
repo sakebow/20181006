@@ -1,0 +1,120 @@
+/* 去除间隙 */
+*{
+	margin: 0;
+	padding: 0;
+}
+/* 模糊背景层 */
+.blur-bg{
+	position: absolute;
+	top: 8.3%;
+	left: 10%;
+	width: 80%;
+	height: 40%;
+	margin: 0 auto;
+}
+.blur-clear{
+    margin: 0 auto;
+    width :80%;
+    height: 40%;
+}
+/* 背景图片 */
+.blur-bg img{
+	width: 100%;
+	height: 100%;
+}
+/* 模糊效果层 */
+.blur-column{
+	position: relative;
+	top: -100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+/* 模糊效果块 */
+.blur-block{
+	-webkit-filter: blur(0.3em);
+	width: 15%;
+	height: 100%;
+	background-image: url(../images/backgrounds/hubu.jpg);
+}
+/* 左浮动模糊 */
+.left{
+	float: left;
+}
+/* 右浮动模糊 */
+.right{
+	float: right;
+}
+/* 轮播模块 */
+.blur-roll{
+	width: 70%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	left: 15%;
+	background-color: white;
+}
+/* 轮播长条 */
+.roll-list{
+	width: 500%;
+	height: 100%;
+	position: relative;
+	top: 0;
+}
+/* 轮播块 */
+.roll-blocks{
+	width: 20%;
+	height: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+/* 轮播块内图片 */
+.roll-blocks img{
+	height: 100%;
+	width: auto;
+}
+/* 左箭头 */
+.left-arrow{
+	left: 15%;
+}
+/* 箭头 */
+.arrow{
+	text-align: center;
+	font-size: 2em;
+	font-weight: bolder;
+	position: relative;
+	width: 6%;
+	height: 20%;
+	top: 40%;
+    color: grey;
+	background-color: rgba(0, 0, 0, 0);
+}
+/* 右箭头 */
+.right-arrow{
+	right: 15%;
+}
+/* 下标条 */
+.roll-list-index{
+	width: 69.7%;
+	height: 6%;
+	position: relative;
+	text-align: center;
+	top: 90%;
+	left: 15%;
+}
+/* 下表块 */
+.roll-blocks-index{
+	width: 3%;
+	height: 140%;
+	margin-right: 0.5em;
+	text-align: center;
+	border: solid orange 0.1em;
+    border-radius: 50%;
+	font-size: small;
+	font-weight: bold;
+	color: lightskyblue;
+}
+/* 选中高亮 */
+.chosen{
+	background-color: orange;
+}

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "登陆";
+}
+<head>
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <!-- 更换验证码 来自CSDN -->
+    <script type="text/javascript">
+        $(function () {
+            $('#login_verifycode').click(function () {
+                $("#verifycode").val('');
+                $("#login_verifycode").attr("src", "/Login/VerifyCode?time=" + Math.random());
+            })
+        })
+    </script>
+    <script type="text/javascript">
+        function ValidateInput(input) {
+            if (input.value.length == 0) {
+                input.setCustomValidity("这个字段是必需的");
+            } else if (input.value == "work01" || input.value == "work02") {
+                document.getElementsByName("verifycode")[0].style.display = "block";
+                document.getElementById("login_verifycode").style.display = "block";
+                document.getElementsByTagName("span")[0].style.display = "block";
+            }else {
+                input.setCustomValidity("");
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            if ("@ViewBag.Message" != "") {
+                alert("@ViewBag.Message");
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="~/Content/login.css" />
+</head>
+
+<div class="bgc">
+    <div class="top">
+        <img src="~/images/backgrounds/dh.png" />
+    </div>
+    <div class="login">
+        <!-- 用表格保持格式 -->
+        <table class="input-box">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                <tr>
+                    <td class="label-tips">用户名：</td>
+                    <td><input type="text" name="id" required oninput="ValidateInput(this)" /></td>
+                </tr>
+                <tr>
+                    <td class="label-tips">密码：</td>
+                    <td><input type="password" name="pwd" required oninput="ValidateInput(this)" /></td>
+                    <td class="third-td"><button>忘记密码</button></td>
+                </tr>
+                <tr>
+                    <td class="label-tips"><span style="display:none;">验证码：</span></td>
+                    <td><input type="text" name="verifycode" required oninput="ValidateInput(this)" style="display:none;"/></td>
+                    <td class="third-td">
+                        <img id="login_verifycode" class="img_verifycode" src="/Login/VerifyCode" style="display:none;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="submit" value="登陆" class="click-button" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

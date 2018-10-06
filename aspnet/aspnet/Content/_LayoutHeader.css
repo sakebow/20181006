@@ -1,0 +1,41 @@
+﻿/* 用户头像 */
+.portrait{
+    height: 80%;
+    min-height: 1em;
+    max-height: 3.6em;
+    width : auto;
+    border: solid white 0.1em;
+    border-radius: 50%;
+    float : left;
+}
+/* 退出登陆 或者 登陆 */
+.quit{
+    margin-top: 0.5em;
+    height: 2.6em; 
+    border: solid white 0.1em;
+    border-radius : 0.5em;
+    float : right;
+    width : auto;
+}
+/* 用户账户 */
+.id{
+    margin-top: 0.55em;
+    color : lightgrey;
+    width : 25%;
+}
+/* 左浮动 */
+.left{
+    float : left;
+}
+/* 右浮动 */
+.right{
+    float : right;
+}
+/* 不可编辑标签 */
+.lab{
+    width : auto;
+}
+/* 展示账号和身份 */
+.display{
+    width : auto;
+}

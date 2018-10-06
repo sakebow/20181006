@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖北大学学生成绩管理系统</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/_LayoutHeader.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/sidebar-menu.css" rel="stylesheet" />
+    <link href="http://www.jq22.com/jquery/font-awesome.4.6.0.css" rel="stylesheet" media="screen">
+    <script src="~/scripts/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <!-- 继续使用Layout里面的东西 -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="~/icons/customer.png" class="portrait" />
+                @Html.ActionLink("湖北大学学生成绩管理系统", "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="id left">
+                <div class="id lab left">账号：</div>
+                <div class="id display left">@Session["login"]</div>
+            </div>
+
+            <div class="id left">
+                <div class="id lab left">身份：</div>
+                @if (Session["login"].ToString().Length > 10)
+                {
+                    <div class="id lab left">学生</div>
+                }
+                else if (Session["login"].ToString().Length >= 8 && Session["login"].ToString().Length < 10)
+                {
+                    <div class="id lab left">教师</div>
+                }
+                else if (Session["login"].ToString().Contains("请"))
+                {
+                    <div class="id lab left">游客</div>
+                }
+                else
+                {
+                    <div class="id lab left">管理员</div>
+                }
+            </div>
+
+            @if ("[请先登录]".Equals(Session["login"].ToString()))
+            {
+                <button class="quit" style="width: 4em;">登陆</button>
+            }
+            else
+            {
+                <button class="quit" style="width: 4em;">退出登录</button>
+            }
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <!-- 侧边栏 使用了模板 -->
+        <aside class="main-sidebar" style="width: 20%; float: left; height: 100%;">
+            <section class="sidebar">
+                <ul class="sidebar-menu">
+                    <li class="header">管理员</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>申请列表</span> <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i>学生申请列表</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>教师申请列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-files-o"></i>
+                            <span>课程管理</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li><a href="ShowCourse"><i class="fa fa-circle-o"></i>查看课程</a></li>
+                            <li><a href="CreateCourse"><i class="fa fa-circle-o"></i>添加课程</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li>
+                        <a href="#">
+                            <i class="fa fa-th"></i> <span>窗口小部件</span>
+                            <small class="label pull-right label-info">新的</small>
+                        </a>
+                    </li>  -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>新闻中心</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i>查看新闻</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>添加新闻</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-laptop"></i>
+                            <span>公告中心</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i>查看公告</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i>新建公告</a></li>
+                        </ul>
+                    </li>
+                    <!--
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-edit"></i> <span>表单</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 一般表单</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-table"></i> <span>表格</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 简单表格</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar"></i> <span>日历</span>
+                            <small class="label pull-right label-danger">3</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-envelope"></i> <span>邮箱</span>
+                            <small class="label pull-right label-warning">12</small>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-folder"></i> <span>实例</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 清单</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-share"></i> <span>多级</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i> 一级 <i class="fa fa-angle-right pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li><a href="#"><i class="fa fa-circle-o"></i> 二级</a></li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-circle-o"></i> 二级 <i class="fa fa-angle-right pull-right"></i></a>
+                                        <ul class="treeview-menu">
+                                            <li><a href="#"><i class="fa fa-circle-o"></i> 三级</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="fa fa-book"></i> <span>文档</span></a></li>
+                    <li class="header">标签</li>
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>警告</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>通知</span></a></li>
+                        -->
+                </ul>
+            </section>
+        </aside>
+
+        <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+        <script src="~/Content/sidebar-menu.js"></script>
+        <script>
+            $.sidebarMenu($('.sidebar-menu'))
+        </script>
+        @RenderBody()
+        <div class="clearfix"></div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - 2016级软件工程产业计划1601班第2组项目成果</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
