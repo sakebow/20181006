@@ -1,5 +1,6 @@
 ﻿using aspnet.DBClasses;
 using aspnet.Models;
+using MvcPager;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,8 +23,52 @@ namespace aspnet.Controllers
         #region 显示课程
         public ActionResult ShowCourse()
         {
-            var allCourse = from s in courseModel.课程表 select s;
+            var allCourse = (from s in courseModel.课程表 select s).OrderBy(s => s.课程编号);
+            int courseCount = allCourse.Count();
+            int pageSize = 2;
+            ViewBag.PageNum = courseCount / pageSize;
             return View(allCourse);
+        }
+
+        [HttpPost]
+        public ActionResult ShowCourse(string searchType, string fuzzySearch = "", string exactSearch = "")
+        {
+            var findCourse = (from s in courseModel.课程表 select s);
+            try
+            {
+                if (searchType == "*请选择*")
+                {
+                    throw new Exception("未选择查找项！");
+                }
+                else
+                {
+                    if (searchType == "课程名称" && !string.IsNullOrEmpty(fuzzySearch))
+                    {
+                        findCourse = findCourse.Where(s => s.课程名称.Contains(fuzzySearch));
+                    }
+                    else if (searchType == "课程类型")
+                    {
+                        findCourse = findCourse.Where(s => s.课程类别.Contains(exactSearch));
+                    }
+                    else if (searchType == "课程简介" && !string.IsNullOrEmpty(fuzzySearch))
+                    {
+                        findCourse = findCourse.Where(s => s.课程简介.Contains(fuzzySearch));
+                    }
+                    else if (searchType == "教材出版社" && !string.IsNullOrEmpty(fuzzySearch))
+                    {
+                        findCourse = findCourse.Where(s => s.课程简介.Contains(fuzzySearch));
+                    }
+                    else
+                    {
+                        throw new Exception("未输入" + searchType + "！");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+            }
+            return View(findCourse);
         }
 
         public ActionResult CourseDetail(int cno)

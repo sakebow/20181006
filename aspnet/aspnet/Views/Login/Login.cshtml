@@ -17,11 +17,13 @@
         function ValidateInput(input) {
             if (input.value.length == 0) {
                 input.setCustomValidity("这个字段是必需的");
-            } else if (input.value == "work01" || input.value == "work02") {
-                document.getElementsByName("verifycode")[0].style.display = "block";
-                document.getElementById("login_verifycode").style.display = "block";
-                document.getElementsByTagName("span")[0].style.display = "block";
-            }else {
+            } 
+            //else if (input.value == "work01" || input.value == "work02") {
+            //    document.getElementsByName("verifycode")[0].style.display = "block";
+            //    document.getElementById("login_verifycode").style.display = "block";
+            //    document.getElementsByTagName("span")[0].style.display = "block";
+                //}
+            else {
                 input.setCustomValidity("");
             }
         }
@@ -47,18 +49,18 @@
             {
                 <tr>
                     <td class="label-tips">用户名：</td>
-                    <td><input type="text" name="id" required oninput="ValidateInput(this)" /></td>
+                    <td><input type="text" name="id" required oninput="ValidateInput(this)" value="@ViewBag.Id"/></td>
                 </tr>
                 <tr>
                     <td class="label-tips">密码：</td>
-                    <td><input type="password" name="pwd" required oninput="ValidateInput(this)" /></td>
+                    <td><input type="password" name="pwd" required oninput="ValidateInput(this)" value="@ViewBag.Password"/></td>
                     <td class="third-td"><button>忘记密码</button></td>
                 </tr>
                 <tr>
-                    <td class="label-tips"><span style="display:none;">验证码：</span></td>
-                    <td><input type="text" name="verifycode" required oninput="ValidateInput(this)" style="display:none;"/></td>
+                    <td class="label-tips">验证码：</td>
+                    <td><input type="text" name="verifycode" required oninput="ValidateInput(this)"/></td>
                     <td class="third-td">
-                        <img id="login_verifycode" class="img_verifycode" src="/Login/VerifyCode" style="display:none;"/>
+                        <img id="login_verifycode" class="img_verifycode" src="/Login/VerifyCode"/>
                     </td>
                 </tr>
                 <tr>

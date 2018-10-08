@@ -39,3 +39,6 @@
 .display{
     width : auto;
 }
+.action-link{
+    text-decoration: none;
+}

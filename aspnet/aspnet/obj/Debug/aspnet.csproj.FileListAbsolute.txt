@@ -56,3 +56,5 @@ E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\EntityFramework.xml
 E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\EntityFramework.SqlServer.xml
 E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\zh-Hans\EntityFramework.resources.dll
 E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\LitJSON.dll
+E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\workplace\VisualStudio\aspnet\aspnet\aspnet\bin\MvcPager.dll

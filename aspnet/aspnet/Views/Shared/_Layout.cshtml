@@ -46,7 +46,9 @@
 
             @if ("[请先登录]".Equals(Session["login"].ToString()))
             {
-                <button class="quit" style="width: 4em;">登陆</button>
+                <button class="quit" style="width: 4em;">
+                    @Html.ActionLink("登陆", "../Login/Login", "", new { @class = "action-link" })
+                </button>
             }
             else
             {

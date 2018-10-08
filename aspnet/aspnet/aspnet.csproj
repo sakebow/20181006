@@ -88,6 +88,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPager, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcPager.1.0.0\lib\MvcPager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -411,13 +415,17 @@
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="scripts\roll.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\VerifyCode.cs" />
     <Compile Include="Controllers\WebHelper.cs" />
     <Compile Include="DBClasses\Courses.cs" />
@@ -429,9 +437,21 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="Models\公告表.cs" />
+    <Compile Include="Models\学生_课程表.cs" />
+    <Compile Include="Models\学生个人成绩.cs" />
+    <Compile Include="Models\学生平均成绩.cs" />
+    <Compile Include="Models\学生申请表.cs" />
+    <Compile Include="Models\学生表.cs" />
+    <Compile Include="Models\教师_课程表.cs" />
+    <Compile Include="Models\教师申请表.cs" />
+    <Compile Include="Models\教师表.cs" />
     <Compile Include="Models\新闻表.cs" />
+    <Compile Include="Models\班级信息.cs" />
     <Compile Include="Models\管理员表.cs" />
+    <Compile Include="Models\课程_时间表.cs" />
     <Compile Include="Models\课程表.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -470,6 +490,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="images\uploads\" />
+    <Folder Include="Views\Student\" />
+    <Folder Include="Views\Teacher\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
