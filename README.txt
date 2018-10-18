@@ -19,3 +19,10 @@ which means we have to make it before deadline.
 Please wait...
 However, if your requirement doesn't as serious as ours, you can just use it and update it.
 Have fun!
+
+*************************************************************
+                           NOTICE
+*************************************************************
+Alright, I'm back!
+sql scripts for 2.0 version have been uploaded.
+Maybe this version will be better.
