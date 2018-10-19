@@ -164,22 +164,34 @@ CREATE TABLE 密码表(
 ALTER TABLE 密码表 ADD CONSTRAINT pk_密码表 PRIMARY KEY (账号);
 ALTER TABLE 密码表 ADD CONSTRAINT fk_密码表_身份对照表_账号 FOREIGN KEY (账号) REFERENCES 身份对照表(账号);
 
-CREATE TABLE 登陆信息表(
-	账号             char(50)                      not null,
-	ApplicationID    char(100)                             ,
-	最近登录时间     DATETIME                              ,
-	最近登出时间     DATETIME                              ,
+CREATE TABLE 登入信息表(
+	账号              char(50)                      not null,
+	ApplicationID     char(100)                             ,
+	登入时间          DATETIME                              ,
+	rowID             int          IDENTITY(1,1)    not null,
+	ROWID_MD5_TOUPPER char(1000)                    not null
 );
-ALTER TABLE 登陆信息表 ADD CONSTRAINT pk_登陆信息表 PRIMARY KEY (账号);
-ALTER TABLE 登陆信息表 ADD CONSTRAINT fk_登陆信息表_身份对照表_账号 FOREIGN KEY (账号) REFERENCES 身份对照表 (账号);
+ALTER TABLE 登入信息表 ADD CONSTRAINT pk_登入信息表 PRIMARY KEY (rowID);
+ALTER TABLE 登入信息表 ADD CONSTRAINT fk_登入信息表_身份对照表_账号 FOREIGN KEY (账号) REFERENCES 身份对照表 (账号);
+
+CREATE TABLE 登出信息表(
+	账号              char(50)                      not null,
+	ApplicationID     char(100)                             ,
+	登出时间          DATETIME                              ,
+	rowID             int                           not null,
+	ROWID_MD5_TOUPPER char(1000)                    not null
+);
+ALTER TABLE 登出信息表 ADD CONSTRAINT pk_登出信息表 PRIMARY KEY (rowID);
+ALTER TABLE 登出信息表 ADD CONSTRAINT fk_登出信息表_登入信息表_rowID FOREIGN KEY (rowID) REFERENCES 登入信息表 (rowID);
+ALTER TABLE 登出信息表 ADD CONSTRAINT fk_登出信息表_身份对照表_账号 FOREIGN KEY (账号) REFERENCES 身份对照表 (账号);
 
 GO
-CREATE VIEW 登陆信息对照视图
+CREATE VIEW 登陆信息视图
 AS
-SELECT 身份代码表.身份代码, 身份代码表.身份名称, 密码表.密码, 密码表.账号, 登陆信息表.ApplicationID, 登陆信息表.最近登出时间, 登陆信息表.最近登录时间
-FROM 身份代码表, 密码表, 登陆信息表, 身份对照表
-WHERE 身份代码表.身份代码 = 身份对照表.身份代码 and 密码表.账号 = 身份对照表.账号
-                                                and 登陆信息表.账号 = 身份对照表.账号
+SELECT 身份对照表.账号, 登入信息表.ApplicationID, 登入信息表.rowID, 登入信息表.ROWID_MD5_TOUPPER, 登入信息表.登入时间, 登出信息表.登出时间
+FROM 身份对照表, 登入信息表, 登出信息表
+WHERE 登入信息表.ROWID_MD5_TOUPPER = 登出信息表.ROWID_MD5_TOUPPER
+GROUP BY 身份对照表.账号, 登入信息表.ApplicationID, 登入信息表.rowID, 登入信息表.ROWID_MD5_TOUPPER, 登入信息表.登入时间, 登出信息表.登出时间
 GO
 
 CREATE TABLE 学生表(
