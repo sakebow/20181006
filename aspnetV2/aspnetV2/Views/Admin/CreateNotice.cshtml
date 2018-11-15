@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "管理员 - 添加公告";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>管理员 - 添加公告</h2>
+</div>
+@using (Html.BeginForm("CreateNotice", "Admin", FormMethod.Post))
+{
+    <!--
+    Post方法提交：对应AdminController下的CreateNotice[HttpPost]方法，添加新闻
+        接收新闻标题(noticeTitle)、新闻简介(noticeBrief)、新闻内容(noticeDetail)三个变量
+        其中三个字段都是是必须的，需要验证是否有值
+        其次，公告简介是直接进入数据库，公告内容需要先写入txt文档再将文档路径记入数据库
+    -->
+    <label>公告标题：</label>
+    <input type="text" name="noticeTitle" required placeholder="公告标题" class="form-control" />
+    <label>公告简介：</label>
+    <textarea name="noticeBrief" placeholder="公告简介" ></textarea>
+    <label>公告内容：</label>
+    <textarea name="noticeDetail" placeholder="公告内容" ></textarea>
+    <br />
+    <input type="submit" value="发布公告" class="btn" style="margin: 0 auto;" />
+}
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script>
+    window.onload = function () {
+        CKEDITOR.replace('noticeBrief');
+        CKEDITOR.replace('noticeDetail');
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage" + "！");
+        }
+        document.getElementsByClassName("body-content")[0].style.marginTop = document.getElementsByClassName("navbar")[0].offsetHeight + 'px';
+    }
+</script>
+
+

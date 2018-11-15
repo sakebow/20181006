@@ -20,9 +20,23 @@ Please wait...
 However, if your requirement doesn't as serious as ours, you can just use it and update it.
 Have fun!
 
+UPDATED on NOV.15th, 2018:
+This is our 4th version.
+No more damned expections.
+We just try our best to do what we can do.
+And we should speed up otherwise our team will be darned.
+
 *************************************************************
                            NOTICE
 *************************************************************
 Alright, I'm back!
 sql scripts for 2.0 version have been uploaded.
 Maybe this version will be better.
+
+*************************************************************
+                        NOTICE   AGAIN
+*************************************************************
+Emmm...all early version are failed running in project reusulting from many kinds of reasons.
+Currently errors are removed.
+Whether there will be errors in the future is unknown.
+Hoping things will be better.
