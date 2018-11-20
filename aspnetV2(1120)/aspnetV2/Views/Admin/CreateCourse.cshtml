@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "管理员 - 添加课程";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!--
+    非Post部分：单纯的展示各种输入控件
+-->
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>管理员 - 添加课程</h2>
+</div>
+@using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td><label>课程所属院系：</label></td>
+            <td>
+                <!--
+                    院系下拉框：需要后台将院系表写入ViewBag或者ViewData中,name="courseFaculty"
+                -->
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程所属专业：</label></td>
+            <td>
+                <!--
+                    专业下拉框：需要后台将专业表写入ViewBag或者ViewData中，name="courseSpecialty"
+                -->
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程后续代码：</label></td>
+            <td>
+                <input type="text" name="courseId" placeholder="请输入课程代码，使得院系、专业、课程代码一共加起来是10位" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程学分</label></td>
+            <td>
+                <select name="courseScore" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>0.5</option>
+                    <option>1.0</option>
+                    <option>1.5</option>
+                    <option>2.0</option>
+                    <option>2.5</option>
+                    <option>3.0</option>
+                    <option>3.5</option>
+                    <option>4.0</option>
+                    <option>4.5</option>
+                    <option>5.0</option>
+                    <option>5.5</option>
+                    <option>6.0</option>
+                    <option>6.5</option>
+                    <option>7.0</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>上课学年：</label></td>
+            <td>
+                <select name="courseYear" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程教材：</label></td>
+            <td>
+                <!--
+                    使用下拉框，需要后台将教材代码表中存入ViewBag或者ViewData, name="courseBook"
+                -->
+            </td>
+        </tr>
+        <tr>
+            <td><label>是否启用：</label></td>
+            <td>
+                <!--
+                    使用美化过后的radio控件, name="courseExist"
+                -->
+            </td>
+        </tr>
+    </table>
+
+    <label>课程简介：</label>
+    <textarea name="courseBrief"></textarea>
+    <br />
+    <input type="submit" value="提交" class="btn"/>
+}
+<!--渲染textarea，变成多功能在线编辑富文本框-->
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script>
+    window.onload = function () {
+        CKEDITOR.replace('courseBrief');
+        /* 指定body开始的位置 */
+        document.getElementsByClassName("body-content")[0].style.marginTop = document.getElementsByClassName("navbar")[0].offsetHeight + 'px';
+    }
+</script>

@@ -1,0 +1,74 @@
+﻿/* 头像滚动域 */
+.pic-slide-sidebar{
+    width : 25%;
+    height: 100%;
+    float : left;
+    padding: 0.5em;
+}
+/* 头像所在 */
+.slide-pic{
+    width : 95%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0.75em 0.75em 1em;
+    margin: 0 auto;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+    .slide-pic img{
+        width: 100%;
+        height: 100%;
+    }
+/* 姓名 */
+.slide-name-num{
+    width : 95%;
+    margin: 0.25em auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1.125em;
+    text-align : center;
+}
+.name{
+    font-size: 1.005em;
+}
+.number{
+    font-size: 1.125em;
+}
+/* 信息区域 */
+.info-area{
+    width : 75%;
+    height: auto;
+    float : left;
+    padding: 0.5em;
+}
+/* 分类说明 */
+.table-classify-header{
+    width : auto;
+    height: auto;
+    background-color: rgba(30, 90, 0, 0.75);
+    color: black;
+    font-weight: bold;
+    font-size: 1.25em;
+    text-align: center;
+    border-radius: 0.175em;
+    margin : 1.5em 0;
+}
+/* 标签说明 */
+.label-td{
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align : right;
+}
+/* div停滞 */
+.fixed{
+    position: fixed;
+    width : 15.6%;
+    top : 51px;
+}
+/* div内图片相对停滞 */
+.fixed-img{
+    position: relative;
+}
+/* 增加间距 */
+.extra-padding{
+    padding-top: 2.5em;
+    padding-bottom: 2.5em;
+}

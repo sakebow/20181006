@@ -1,0 +1,4 @@
+﻿/* 让稍短的输入框和文字放在一排 */
+.short-input-box{
+    float: left;
+}

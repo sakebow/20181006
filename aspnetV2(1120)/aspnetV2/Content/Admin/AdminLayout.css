@@ -1,0 +1,36 @@
+﻿/* 侧边栏 */
+.sidebar-menu-custom{
+    width: 20%;
+    height: 100%;
+    float : left;
+}
+/* 右主体 */
+.right-body{
+    width: 79.5%;
+    height: 100%;
+    float : left;
+}
+.menu-list-custom{
+    text-align: center;
+    padding: 0;
+}
+    .menu-list-custom li {
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        cursor: pointer;
+    }
+        .menu-list-custom li:hover {
+            background-color: rgba(200, 255, 255, 0.75);
+        }
+
+/* 页脚 */
+.footer-container{
+    width: 100%;
+    height: 20%;
+    background-color: rgba(30, 90, 0, 1);
+    border-radius: 0.25em;
+    text-align: center;
+    padding: 1.25em;
+    margin-top: 1.5em;
+    color : white;
+}
