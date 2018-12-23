@@ -1,0 +1,107 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<aspnetV2.Models.已选课程信息>
+@{
+    ViewBag.Title = "ShowClassInfo";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>教师 - 查看班级信息</h2>
+</div>
+
+<div class="container extra-padding">
+    @using (Html.BeginForm("ShowClassInfo", "Teacher", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td>
+                    <label class="distance-among-input">教授课程:</label>
+                </td>
+                <td>
+                    @Html.DropDownList("searchChoice", ViewBag.stuCourses as SelectList, "=====请选择=====", new { @class = "form-control" })
+                </td>
+                <td colspan="4"><input type="submit" value="查询" class="btn" style="margin:0 auto;" /></td>
+            </tr>
+        </table>
+    }
+    @foreach (var item in Model)
+    {
+        <div class="item-frame">
+            <div class="item-image" title="@item.学生证件照路径">
+                <!--
+                    学生头像 -- 学校/院系/专业/班级/姓名 + 学号.jpg(.png)
+                    每一个div的title标签都需要修改成和内容一样的东西
+                -->
+                @if (item.学生证件照路径 != null)
+                {
+                    <img src="~/images/StudentPicture/@item.学生证件照路径" id="aa" />
+                }
+                else
+                {
+                    <img src="~/images/CourseBooks/暂无图片.png" id="aa" />
+                }
+            </div>
+            <div class="item-detail">
+                <div class="short-info info-distance item-hide-overflow" title="@item.学生姓名">
+                    <span class="label-td">学生姓名：</span>@item.学生姓名
+                </div>
+                <div class="shorter-info info-distance item-hide-overflow" title="@item.学生性别">
+                    <span class="label-td">性别：</span>@item.学生性别
+                </div>
+                <div class="long-info info-distance item-hide-overflow" title="@item.学生学号">
+                    <span class="label-td">学生学号：</span>@item.学生学号
+                </div>
+                <div class="clearfix"></div>
+                <div class="long-info info-distance item-hide-overflow" title="@item.学生所属院系">
+                    <span class="label-td">院系：</span>@item.学生所属院系
+                </div>
+                <div class="long-info info-distance item-hide-overflow" title="@item.学生所属专业名称">
+                    <span class="label-td">专业：</span>@item.学生所属专业名称
+                </div>
+                <div class="clearfix"></div>
+                <div class="item-hide-overflow long-info" title="@item.是否双学位">
+                    <span class="label-td">是否双学位：</span>@item.是否双学位
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="operation">
+                <ul>
+                    <li>
+                        @Html.ActionLink("详情", "StudentInfo", new { id = item.学生学号 })
+                    </li>
+                    <li>
+                        @Html.ActionLink("申请删除", "DeleteStuRequest", new { id = item.学生学号 ,searchChioce = item.选课代码 } , new { @onclick = "return confirm('是否删除？');" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("修改信息", "EditStuInfo", new { id = item.学生学号 })
+                    </li>
+                    <li>
+                        @Html.ActionLink("打分", "StudentScore", new { studentId = item.学生姓名, courseId = item.选课代码 })
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <!--需要@foreach的到此为止-->
+        </div>
+    }
+</div>
+<div class="pagedList" style="margin:0 auto;text-align:center">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("ShowClassInfo", new { page = page }))      
+</div>
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+    }
+</script>

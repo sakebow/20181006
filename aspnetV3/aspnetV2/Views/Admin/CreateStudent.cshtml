@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "管理员 - 添加学生";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!--
+    非Post部分：单纯的展示各种输入控件
+-->
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+</head>
+<div class="show-header">
+    <h2>管理员 - 添加学生</h2>
+</div>
+@using (Html.BeginForm("CreateStudent", "Admin", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td><label>学号：</label></td>
+            <td>
+                <input type="text" name="Sno" placeholder="请输入学号" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>姓名：</label></td>
+            <td>
+                <input type="text" name="Sname" placeholder="请输入姓名" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>证件类别：</label></td>
+            <td>
+                @Html.DropDownList("idType", ViewBag.idCard as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>证件号：</label></td>
+            <td>
+                <input type="text" name="id" placeholder="请输入证件号" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>性别：</label></td>
+            <td>
+                @Html.DropDownList("sex", ViewBag.sex as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>是否启用：</label></td>
+            <td>
+                <label><input type="radio" name="studentExist" checked value="是"><i>✓</i>是</label>
+                <label><input type="radio" name="studentExist" value="否"><i>✓</i>否</label>
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    <input type="submit" value="提交" class="btn" />
+}
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+        CKEDITOR.replace('courseBrief');
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage" + "！");
+        }
+        LocateBody();
+    }
+</script>

@@ -1,0 +1,159 @@
+﻿
+@{
+    ViewBag.Title = "管理员 - 添加课程";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!--
+    非Post部分：单纯的展示各种输入控件
+-->
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <!--
+        学校、院系、专业下拉框三级联动 -- 万岁！
+    -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("select[name='courseFaculty']").change(function () {
+                var url = '/Admin/SelectSpecialty/?facultyId=' + $("select[name='courseFaculty']").val();
+                alert(url);
+                $.getJSON(url, function (data) {
+                    $("select[name='courseSpecialty']").html('');
+                    $.each(data, function (i, item) {
+                        alert(item);
+                        $("<option></option>").val(item["专业代码"]).text(item["专业名称"]).appendTo($("select[name='courseSpecialty']"))
+                    });
+                });
+            });
+            $("select[name='courseSchool']").change(function () {
+                var url = '/Admin/SelectFaculty/?schoolId=' + $("select[name='courseSchool']").val();
+                alert(url);
+                $.getJSON(url, function (data) {
+                    $("select[name='courseFaculty']").html('');
+                    $("select[name='courseSpecialty']").html('');
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["院系代码"]).text(item["院系名称"]).appendTo($("select[name='courseFaculty']"))
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<div class="show-header">
+    <h2>管理员 - 添加课程</h2>
+</div>
+@using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td><label>课程所属学校：</label></td>
+            <td>
+                @Html.DropDownList("courseSchool", ViewBag.scho as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程所属院系：</label></td>
+            <td>
+                @Html.DropDownList("courseFaculty", ViewBag.dept as SelectList, "======请选择======", new { @class = "form-control"})
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程所属专业：</label></td>
+            <td>
+                @Html.DropDownList("courseSpecialty", ViewBag.spec as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程后续代码：</label></td>
+            <td>
+                <input type="text" name="courseId" placeholder="请输入6位课程代码" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程名称：</label></td>
+            <td>
+                <input type="text" name="courseName" placeholder="请输入课程名称" required class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程学分</label></td>
+            <td>
+                <select name="courseScore" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>0.5</option>
+                    <option>1.0</option>
+                    <option>1.5</option>
+                    <option>2.0</option>
+                    <option>2.5</option>
+                    <option>3.0</option>
+                    <option>3.5</option>
+                    <option>4.0</option>
+                    <option>4.5</option>
+                    <option>5.0</option>
+                    <option>5.5</option>
+                    <option>6.0</option>
+                    <option>6.5</option>
+                    <option>7.0</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>上课学年：</label></td>
+            <td>
+                <select name="courseYear" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程教材：</label></td>
+            <td>
+                @Html.DropDownList("courseBook", ViewBag.book as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程类型</label></td>
+            <td>
+                @Html.DropDownList("courseType", ViewBag.type as SelectList, "=====请选择=====", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>是否启用：</label></td>
+            <td>
+                <label><input type="radio" name="courseExist" checked value="是"><i>✓</i>是</label>
+                <label><input type="radio" name="courseExist" value="否"><i>✓</i>否</label>
+            </td>
+        </tr>
+    </table>
+
+    <label>课程简介：</label>
+    <textarea name="courseBrief" class="form-control"></textarea>
+    <br />
+    <input type="submit" value="提交" class="btn"/>
+}
+<!--渲染textarea，变成多功能在线编辑富文本框-->
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        CKEDITOR.replace('courseBrief');
+        /* 指定body开始的位置 */
+        LocateBody();
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage");
+        }
+    }
+</script>

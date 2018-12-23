@@ -1,0 +1,52 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<aspnetV2.Models.新闻视图>
+@{
+    ViewBag.Title = "管理员 - 显示新闻";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="show-header">
+    <h2>显示新闻</h2>
+</div>
+
+<table class="input-table-view"></table>
+
+<div class="book-shelf">
+    <div class="book-classfication">新闻<span style="color: white">NEWS</span></div>
+    <div class="book-shelf-space">
+        <!--
+            从这里开始使用@foreach显示所有新闻
+        -->
+        @foreach (var item in Model)
+        {
+            <div class="book-item">
+                <div class="book-name">@item.标题</div>
+                <div class="book-image">
+                    <div class="book-name">@item.简介</div>
+                </div>
+                <div class="operation">
+                    <div>@Html.ActionLink("编辑", "EditNews", new { newsId = item.编号 })</div>
+                    <div>@Html.ActionLink("删除", "DeleteNews", new { newsId = item.编号 }, new { @onclick = "return confirm('确认删除？')" })</div>
+                    <div>@Html.ActionLink("详情", "NewsDetail", new { newsId = item.编号 })</div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        }
+        @Html.PagedListPager(Model, page => Url.Action("ShowNews", new { page = page }))
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+    }
+</script>

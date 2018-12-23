@@ -1,0 +1,119 @@
+﻿@model aspnetV2.Models.全部课程教材对照视图
+@{
+    ViewBag.Title = "管理员 - 编辑课程";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CourseDetail.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/AdminLayout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 编辑课程</h2>
+</div>
+
+@using (Html.BeginForm("EditCourse", "Admin", FormMethod.Post))
+{
+<div class="course-content">
+    <div class="course-book-image">
+        <img src="~/images/CourseBooks/@Model.教材图片路径" />
+    </div>
+    <table class="table-view-book-detail">
+        <tr>
+            <td><label>课程代码：</label></td>
+            <td>
+                <input type="text" readonly name="courseId" placeholder="" value="@ViewBag.Code" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程名称：</label></td>
+            <td>
+                <input type="text" name="courseName" placeholder="" value="@ViewBag.Name" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程学分</label></td>
+            <td>
+                <select name="courseScore" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>0.5</option>
+                    <option>1.0</option>
+                    <option>1.5</option>
+                    <option>2.0</option>
+                    <option>2.5</option>
+                    <option>3.0</option>
+                    <option>3.5</option>
+                    <option>4.0</option>
+                    <option>4.5</option>
+                    <option>5.0</option>
+                    <option>5.5</option>
+                    <option>6.0</option>
+                    <option>6.5</option>
+                    <option>7.0</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>上课学年：</label></td>
+            <td>
+                <select name="courseYear" class="form-control">
+                    <option selected="selected">0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程教材：</label></td>
+            <td>
+                @Html.DropDownList("courseBook", ViewBag.book as SelectList, "======请选择======", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>课程类型</label></td>
+            <td>
+                @Html.DropDownList("courseType", ViewBag.type as SelectList, "=====请选择=====", new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td><label>是否启用：</label></td>
+            <td>
+                <label><input type="radio" name="courseExist" checked value="是"><i>✓</i>是</label>
+                <label><input type="radio" name="courseExist" value="否"><i>✓</i>否</label>
+            </td>
+        </tr>
+    </table>
+
+    <label>课程简介：</label>
+    <textarea name="courseBrief" class="form-control">
+        @ViewBag.Line
+    </textarea>
+    <br />
+    <input type="submit" value="修改课程" class="btn" />
+
+</div>
+}
+
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        CKEDITOR.replace('courseBrief');
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage" + "！");
+        }
+        LocateBody();
+    }
+</script>

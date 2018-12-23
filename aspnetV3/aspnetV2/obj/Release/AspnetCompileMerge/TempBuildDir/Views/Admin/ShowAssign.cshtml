@@ -1,0 +1,69 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<aspnetV2.Models.选课视图>
+@{
+    ViewBag.Title = "ShowCourse";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 分配信息</h2>
+</div>
+
+<div class="container extra-padding">
+    <!--表头，不要框在@foreach下-->
+    <div class="item-frame div-vertical-center">
+        <div class="item-course-name hide-overflow-text table-header">课程名称</div>
+        <div class="item-course-teacher hide-overflow-text table-header">授课教师</div>
+        <div class="item-course-score hide-overflow-text table-header">课程学分</div>
+        <div class="item-course-student-num hide-overflow-text table-header">开班人数</div>
+        <div class="item-addons hide-overflow-text table-header">课程详情</div>
+        <div class="clearfix"></div>
+    </div>
+    <!--从这里开始使用@foreach-->
+    @foreach (var item in Model)
+    {
+        <div class="item-frame div-vertical-center">
+            <div class="item-course-name hide-overflow-text table-header">@item.教材名称</div>
+            <div class="item-course-teacher hide-overflow-text table-header">@item.教师姓名</div>
+            <div class="item-course-score hide-overflow-text table-header">@item.课程学分</div>
+            <div class="item-course-student-num hide-overflow-text table-header">@item.计划开班人数</div>
+            <div class="item-addons hide-overflow-text table-header">
+                <ul>
+                    <li>
+                        @Html.ActionLink("详情", "CourseDetail", new { courseId = item.课程代码 })
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+    @Html.PagedListPager(Model, page => Url.Action("ShowAssign", new { page = page }))
+</div>
+
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+        // 隔行变色
+        trs = document.getElementsByClassName("item-frame");
+        ckb = document.getElementsByName("checkCourse");
+        for (var i = 0; i < trs.length; i++) {
+            if (i % 2 == 0) {
+                trs[i].className = "different-color item-frame div-vertical-center";
+            }
+        }
+    }
+</script>

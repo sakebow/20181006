@@ -1,0 +1,66 @@
+﻿@model aspnetV2.Models.全部课程教材对照视图
+@{
+    ViewBag.Title = "首页 - 课程细节";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CourseDetail.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/AdminLayout.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="show-header">
+    <h2>首页 - 课程细节</h2>
+</div>
+
+<!--
+    这里不需要@foreach显示全部数据
+    后台只需要使用唯一标识的课程代码找出唯一的对象，作为参数放入return View()中就好了
+    前端页面就能使用Model逐个访问
+-->
+
+<div class="course-content">
+    <div class="course-book-image">
+        <img src="~/images/CourseBooks/@Model.教材图片路径" />
+    </div>
+    <table class="table-view-book-detail">
+        <tr>
+            <td><label>课程名称</label></td>
+            <td>@Model.课程名称</td>
+        </tr>
+        <tr>
+            <td><label>课程学分</label></td>
+            <td>@Model.课程学分</td>
+        </tr>
+        <tr>
+            <td><label>上课学年</label></td>
+            <td>@Model.课程上课学年</td>
+        </tr>
+        <tr>
+            <td><label>教材名称</label></td>
+            <td>@Model.教材名称</td>
+        </tr>
+        <tr>
+            <td><label>出版社名称</label></td>
+            <td>@Model.出版社名称</td>
+        </tr>
+    </table>
+    <div class="clearfix"></div>
+</div>
+
+
+<label>课程简介</label>
+<div class="detail-info">
+    这是由清华大学出版社出版的JAVA程序设计，其中包含很多很奇怪很高深的东西。学习是一个漫长的过程，但是谁TM会等那么久，会花那么多钱去养一个不赚钱的SB啊？
+    <!--
+        注：由于简介是存入文档，所以需要后台将文档读取并存入ViewBag或者ViewData，前端页面引用就可以了
+    -->
+</div>
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script>
+    window.onload = LocateBody;
+</script>

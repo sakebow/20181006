@@ -1,0 +1,53 @@
+﻿@model aspnetV2.Models.公告视图
+@{
+    ViewBag.Title = "首页 - 公告详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CourseDetail.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/AdminLayout.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/customjs/locateBody.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            if ("@ViewBag.ErrorMessage" != "") {
+                alert("@ViewBag.ErrorMessage");
+            }
+            LocateBody();
+        }
+    </script>
+</head>
+
+<div class="show-header">
+    首页 - 公告详情
+</div>
+
+<div class="course-content">
+    <table class="table-view-book-detail">
+        <tr>
+            <td><label>新闻标题</label></td>
+            <td>@Model.标题</td>
+        </tr>
+        <tr>
+            <td><label>新闻简介</label></td>
+            <td>@Model.简介</td>
+        </tr>
+        <tr>
+            <td><label>上传时间</label></td>
+            <td>@Model.上传时间</td>
+        </tr>
+        <tr>
+            <td><label>修改时间</label></td>
+            <td>@Model.修改时间</td>
+        </tr>
+    </table>
+    <div class="clearfix"></div>
+</div>
+
+
+<label>公告内容</label>
+<div class="detail-info">
+    @ViewBag.Line
+</div>

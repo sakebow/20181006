@@ -1,0 +1,37 @@
+﻿/* 让稍短的输入框和文字放在一排 */
+.short-input-box {
+    float: left;
+}
+/* checkBox美化 */
+label {
+    cursor: pointer;
+}
+
+    label i {
+        display: inline-block;
+        text-align: center;
+        line-height: 1em;
+        width: 1.2em;
+        vertical-align: middle;
+        border: rgba(30, 90, 0, 1) 0.1em solid;
+    }
+
+input[type="checkbox"], input[type="radio"] {
+    display: none;
+}
+
+    input[type="radio"] + i {
+        border-radius: 50%;
+    }
+
+    input[type="checkbox"]:checked + i, input[type="radio"]:checked + i {
+        background: rgba(30, 90, 0, 0.5);
+    }
+
+    input[type="checkbox"]:disabled + i, input[type="radio"]:disabled + i {
+        border-color: rgba(30, 90, 0, 1);
+    }
+
+    input[type="checkbox"]:checked:disabled + i, input[type="radio"]:checked:disabled + i {
+        background: rgba(30, 90, 0, 0.5);
+    }

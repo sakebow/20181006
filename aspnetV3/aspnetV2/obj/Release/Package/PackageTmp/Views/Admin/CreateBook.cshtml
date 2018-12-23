@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "CreateBook";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>管理员 - 添加教材</h2>
+</div>
+@using (Html.BeginForm("CreateCourse", "Admin", FormMethod.Post))
+{
+    <table>
+        
+    </table>
+
+    <br />
+    <input type="submit" value="提交" class="btn" />
+}
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+    }
+</script>

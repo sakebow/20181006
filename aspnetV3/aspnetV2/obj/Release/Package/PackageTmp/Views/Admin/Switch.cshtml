@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Switch";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <!-- 更换验证码 来自CSDN -->
+    <script type="text/javascript">
+        $(function () {
+            $('#login_verifycode').click(function () {
+                $("#verifycode").val('');
+                $("#login_verifycode").attr("src", "/Login/VerifyCode?time=" + Math.random());
+            })
+        })
+    </script>
+    <script src="~/scripts/customjs/locateBody.js"></script>
+    <script>
+        window.onload = function () {
+            if ('@Session["account"]' == "请先登录") {
+                top.location.href = '/Login/Login';
+            }
+            LocateBody();
+        }
+    </script>
+    <link rel="stylesheet" href="~/Content/Admin/ShowCourse.css" />
+    <link rel="stylesheet" href="~/Content/Student/StudentInfo.css" />
+</head>
+
+<div class="show-header">
+    管理员 - 系统开关
+</div>
+<div class="extra-padding container">
+    <table>
+        @using (Html.BeginForm("Switch", "Admin", FormMethod.Post))
+        {
+            <!--
+            Post方法提交：对应LoginController下的Login[HttpPost]方法，进行登陆验证
+                接收用户名(id)、密码(pwd)、验证码(verifycode)，同时验证三个变量是否正确
+                1、id和pwd查找数据库的密码表，找到了再验证验证码是否正确，否则直接报错
+                2、验证码通过jQuery与后台逻辑(LoginController下的VerifyCode[HttpPost]方法)一起实现
+            -->
+            <tr>
+                <td class="label-td">当前状态：</td>
+                <td class="label-td">@ViewBag.Line</td>
+                <td class="label-td">更改状态为：</td>
+                <td>
+                    <input type="text" readonly value="@ViewBag.Another" class="form-control" name="switchState" />
+                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td class="label-tips">输入验证码确认：</td>
+                <td><input type="text" name="verifycode" required class="form-control" /></td>
+                <td class="third-td">
+                    <img id="login_verifycode" class="img_verifycode" src="/Login/VerifyCode" />
+                </td>
+                <td>
+                    <input type="submit" value="提交" class="btn" />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

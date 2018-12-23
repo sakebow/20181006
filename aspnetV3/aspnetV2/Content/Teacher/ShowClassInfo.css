@@ -1,0 +1,82 @@
+﻿/* 去掉圆点 */
+li{
+    list-style-type : none;
+}
+/* 条目框架 */
+.item-frame {
+    width: 95%;
+    height: 20%;
+    margin: 0 auto;
+    border: solid 0.1em rgba(30, 90, 0, 1);
+    border-radius: 0.5em;
+    padding: 1em;
+    margin-top: 1em;
+}
+/* 条目照片 */
+.item-image {
+    width: 15%;
+    height: 90%;
+    border-radius: 0.3em;
+    float: left;
+    overflow: hidden;
+}
+
+    .item-image img {
+        width: 100%;
+        height: auto;
+        transition: all 1.5s;
+    }
+        .item-image img:hover {
+            transform: scale(1.1);
+        }
+/* 条目详细信息 */
+.item-detail {
+    width: 75%;
+    height: 100%;
+    float: left;
+    padding-left: 0.75em;
+}
+/* 短条目信息框 */
+.short-info {
+    width: 30%;
+    height: 30%;
+    float: left;
+}
+/* 更短的信息框 */
+.shorter-info{
+    width: 20%;
+    height:30%;
+    float:left;
+}
+/* 长条目信息框 */
+.long-info {
+    width: 45%;
+    height: 30%;
+    float: left;
+}
+/* 信息框行间距 */
+.info-distance {
+    padding-bottom: 1em;
+}
+/* 溢出处理 */
+.item-hide-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* 操作条目 */
+.operation{
+    width : 9.5%;
+    height:100%;
+    float :left;
+}
+    .operation li {
+        width: 100%;
+        height: 33%;
+        font-size: 1.1em;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 0.25em;
+    }

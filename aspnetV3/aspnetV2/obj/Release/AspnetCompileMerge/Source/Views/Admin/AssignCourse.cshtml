@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "ShowCourse";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 分配信息</h2>
+</div>
+
+@using (Html.BeginForm("AssignCourse", "Admin", FormMethod.Post))
+{
+    <div class="container extra-padding">
+        <table>
+            <tr>
+                <td><label>课程：</label></td>
+                <td>
+                    @Html.DropDownList("courseId", ViewBag.cour as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>教师：</label></td>
+                <td>
+                    @Html.DropDownList("teacherId", ViewBag.teac as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+        <label>计划开班人数：</label>
+        <input type="text" name="number" required placeholder="计划开班人数" class="form-control" />
+        <br />
+        <input type="submit" value="分配" class="btn" />
+
+        <label>是否外部展示：</label>
+        <label><input type="radio" name="assginOpen" checked value="是"><i>✓</i>是</label>
+        <label><input type="radio" name="assginOpen" value="否"><i>✓</i>否</label>
+    </div>
+}
+
+
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+        // 隔行变色
+        trs = document.getElementsByClassName("item-frame");
+        ckb = document.getElementsByName("checkCourse");
+        for (var i = 0; i < trs.length; i++) {
+            if (i % 2 == 0) {
+                trs[i].className = "different-color item-frame div-vertical-center";
+            }
+        }
+    }
+</script>

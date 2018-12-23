@@ -1,0 +1,52 @@
+﻿@model aspnetV2.Models.新闻视图
+@{
+    ViewBag.Title = "管理员 - 编辑新闻";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/Admin/CreateNews.css" />
+    <link rel="stylesheet" href="~/Content/Admin/ShowCourse.css" />
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 编辑新闻</h2>
+</div>
+
+@using (Html.BeginForm("EditNews", "Admin", FormMethod.Post))
+{
+    <!--
+    Post方法提交：对应AdminController下的CreateNews[HttpPost]方法，添加新闻
+        接收新闻标题(newsTitle)、新闻简介(newsBrief)、新闻内容(newsDetail)三个变量
+        其中三个字段都是是必须的，需要验证是否有值
+        其次，新闻简介是直接进入数据库，新闻内容需要先写入txt文档再将文档路径记入数据库
+    -->
+    <label>新闻标题：</label>
+    <input type="text" name="newsTitle" required placeholder="" class="form-control" value="@ViewBag.newsTitle" readonly />
+    <label>新闻简介：</label>
+    <textarea name="newsBrief" placeholder="新闻简介" class="form-control">
+        @ViewBag.newsBrief
+    </textarea>
+
+    <label>新闻内容：</label>
+    <textarea name="newsDetail" placeholder="新闻内容" class="form-control">
+        @ViewBag.Line
+    </textarea>
+    <br />
+    <input type="submit" value="修改新闻" class="btn" />
+}
+
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        CKEDITOR.replace('newsDetail');
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage" + "！");
+        }
+        LocateBody();
+    }
+</script>

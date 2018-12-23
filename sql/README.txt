@@ -11,10 +11,10 @@ While there's something more might be in need in "addonsDB", though there's noth
 一些可能会用上的东西存在"addonsDB.sql"中，但经过多次版本更新就已经没什么有用的了。
 
 -- HOW TO USE IT?
-If you haven't build up your database, just run "finaltest.sql" in your SQL Server 2014 Enterprise, which can be downloaded in MSDN.
+If you haven't build up your database, just run "finaltest.sql" in your SQL Server, which can be downloaded in: itellyou.msdn.com.
 Although many details haven't completed yet, they are still enough for a student management system.
 -- 怎么使用？
-如果你还没有建好自己的数据库，就只需要在SQLServer2014企业版下跑一遍"aspDBV4.sql"就好了，可以在MSDN中下载该数据库软件。
+如果你还没有建好自己的数据库，就只需要在SQLServer下跑一遍"aspDBV4.sql"就好了，可以在itellyou.msdn.com中下载该数据库软件。
 虽然还是有很多细节没有完善，但是现有的依然能够满足学生管理系统的需求。
 
 -- SOMETHING WORTH METHONING

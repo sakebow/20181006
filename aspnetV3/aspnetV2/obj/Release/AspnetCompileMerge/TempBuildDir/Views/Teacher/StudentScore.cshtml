@@ -1,0 +1,47 @@
+﻿@model aspnetV2.Models.已选课程信息
+@{
+    ViewBag.Title = "教师 - 学生打分";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>教师 - 学生打分</h2>
+</div>
+
+<div class="extra-padding container">
+    @using (Html.BeginForm("StudentScore", "Teacher", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td><label>平时成绩：</label></td>
+                <td><input type="number" name="normal" class="form-control" min="0" max="100" value="@ViewBag.normal" /></td>
+            </tr>
+            <tr>
+                <td><label>期中成绩：</label></td>
+                <td><input type="number" name="middle" class="form-control" min="0" max="100" value="@ViewBag.middle" /></td>
+            </tr>
+            <tr>
+                <td><label>期末成绩：</label></td>
+                <td><input type="number" name="final" class="form-control" min="0" max="100" value="@ViewBag.final" /></td>
+            </tr>
+            @*<tr>
+                    <td><label>总成绩：</label></td>
+                    <td><input type="number" name="total" class="form-control" min="0" max="100" value="@Session["normal"]" /></td>
+                </tr>*@
+            <tr>
+                <td><input type="submit" value="保存" class="btn" name="button" /></td>
+                <td><input type="submit" value="提交" class="btn" name="button" /></td>
+            </tr>
+        </table>
+    }
+</div>
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = LocateBody;
+</script>

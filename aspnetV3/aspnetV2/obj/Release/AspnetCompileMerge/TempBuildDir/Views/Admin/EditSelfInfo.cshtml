@@ -1,0 +1,106 @@
+﻿@model aspnetV2.Models.管理员视图
+@{
+    ViewBag.Title = "EditSelfInfo";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/EditSelfInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/scripts/customjs/CascadeAreaInfo.js"></script>
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 修改个人信息</h2>
+</div>
+
+<div class="container extra-padding">
+    @using (Html.BeginForm("EditSelfInfo", "Admin", FormMethod.Post, new { enctype = "multipart / form-data" }))
+    {
+        <div class="table-classify-header">基本信息</div>
+        <table>
+            <tr>
+                <td><label>账号：</label></td>
+                <td><input type="text" readonly value="@Model.账号" class="form-control" /></td>
+                <!-- 以上为只读属性 -->
+                <td><label>姓名：</label></td>
+                <td><input type="text" value="@Model.姓名" class="form-control" name="name"/></td>
+                <!-- 以上为只读属性 -->
+                <td><label>性别：</label></td>
+                <td>
+                    @Html.DropDownList("sex", ViewBag.sex as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+
+        <div class="table-classify-header">院系</div>
+        <table>
+            <tr>
+                <td><label>学校：</label></td>
+                <td><input type="text" name="school" class="form-control" value="@Model.学校名称" readonly /></td>
+                <td><label>院系：</label></td>
+                <td><input type="text" name="faculty" class="form-control" value="@Model.院系名称" readonly /></td>
+            </tr>
+        </table>
+
+        <div class="table-classify-header">地点信息</div>
+        <table>
+            <tr>
+                <td><label>国家：</label></td>
+                <td>
+                    @Html.DropDownList("country", ViewBag.cou as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+                <td><label>省份：</label></td>
+                <td>
+                    @Html.DropDownList("province", ViewBag.pro as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+                <td><label>城市：</label></td>
+                <td>
+                    @Html.DropDownList("city", ViewBag.cit as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+                <td><label>区县：</label></td>
+                <td>
+                    @Html.DropDownList("area", ViewBag.are as SelectList, "====请选择====", new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+        <div class="table-classify-header">其他信息</div>
+        <table>
+            <tr>
+                <td><label>修改密码：</label></td>
+                <td><input type="text" required value="@Model.密码" name="pwd" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td colspan="4"><input type="submit" value="提交" class="btn" style="margin:0 auto;" /></td>
+            </tr>
+        </table>
+    }
+</div>
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script src="~/scripts/laydate/laydate.js"></script>
+<script src="~/layui/layui.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+        if ("@ViewBag.ErrorMessage" != "") {
+            alert("@ViewBag.ErrorMessage")
+        }
+    }
+</script>
+<script>
+    laydate.render({
+        elem: '#test1' //指定元素
+    });
+</script>

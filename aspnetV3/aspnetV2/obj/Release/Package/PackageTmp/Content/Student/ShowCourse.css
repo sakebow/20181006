@@ -1,0 +1,84 @@
+﻿/* 隔行变色 */
+.different-color{
+    background-color: rgba(180, 180, 180, 0.85);
+    color: black;
+}
+/* 溢出处理 */
+.hide-overflow-text{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 100%;
+    vertical-align: middle;
+    float : left;
+    text-align: center;
+}
+/* 表头较窄 */
+.table-header{
+    line-height: 45px;
+    font-weight: bold;
+    font-size: 1.15em;
+}
+/* 表内较宽 
+.cell-content{
+    line-height: 90px;
+    font-size: 1.05em;
+}*/
+/* 选课复选框 */
+.item-checkbox{
+    width: 5%;
+}
+/* 课程名称 */
+.item-course-name{
+    width: 25%;
+}
+/* 课程学分 */
+.item-course-score{
+    width: 15%;
+}
+/* 授课教师 */
+.item-course-teacher{
+    width: 25%;
+}
+/* 课程时长 
+.item-course-last{
+    width : 9%;
+}*/
+/* 学生人数 */
+.item-course-student-num{
+    width : 15%;
+}
+/* 教材图片 
+.item-course-image{
+    width: 15%;
+}
+    .item-course-image img {
+        width: 100%;
+        height: 100%;
+        transition: all 1.3s;
+    }
+        .item-course-image img:hover {
+            transform: scale(1.1);
+        }*/
+/* 课程备注 */
+.item-addons{
+    width : 15%;
+}
+/* 提交按钮 */
+.item-submit{
+    width : 15%;
+    height: 100%;
+    float : left;
+    border: ridge 0.1em rgba(30, 90, 0, 0.75);
+    border-radius: 0.3em;
+    font-size: 1.115em;
+}
+/* 筛选按钮 */
+.choice-submit{
+    float: left;
+    margin-right: 1em;
+}
+/* 提交按钮 */
+.submit-submit{
+    float: right;
+}

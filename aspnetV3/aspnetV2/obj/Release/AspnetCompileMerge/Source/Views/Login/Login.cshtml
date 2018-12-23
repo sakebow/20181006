@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "登陆";
+}
+<head>
+    <script type="text/javascript" src="~/scripts/jquery-1.10.2.js"></script>
+    <!-- 更换验证码 来自CSDN -->
+    <script src="~/scripts/customjs/LoginValidate.js"></script>
+    <script src="~/scripts/customjs/ForgetPassword.js"></script>
+    <!--错误弹窗提示-->
+    <script type="text/javascript">
+        window.onload = function () {
+            if ("@ViewBag.ErrorMessage" != "") {
+                alert("@ViewBag.ErrorMessage");
+            }
+            document.getElementsByTagName("footer")[0].style.marginTop = document.getElementsByClassName("bgc")[0].offsetHeight + "px";
+        }
+    </script>
+    <link rel="stylesheet" href="~/Content/Login/login.css" />
+</head>
+
+<div class="bgc">
+    <div class="top">
+        <img src="~/images/backgrounds/dh.png" />
+    </div>
+    <div class="login">
+        <!-- 用表格保持格式 -->
+        <table class="input-box">
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                <!--
+                Post方法提交：对应LoginController下的Login[HttpPost]方法，进行登陆验证
+                    接收用户名(id)、密码(pwd)、验证码(verifycode)，同时验证三个变量是否正确
+                    1、id和pwd查找数据库的密码表，找到了再验证验证码是否正确，否则直接报错
+                    2、验证码通过jQuery与后台逻辑(LoginController下的VerifyCode[HttpPost]方法)一起实现
+                -->
+                <tr>
+                    <td class="label-tips">用户名：</td>
+                    <td><input type="text" name="id" required value="@ViewBag.Id" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td class="label-tips">密码：</td>
+                    <td><input type="password" name="pwd" required value="@ViewBag.Password" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td class="label-tips">验证码：</td>
+                    <td><input type="text" name="verifycode" required class="form-control" /></td>
+                    <td class="third-td">
+                        <img id="login_verifycode" class="img_verifycode" src="/Login/VerifyCode" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="submit" value="登录" class="click-button" />
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3">
+                    <button id="forget" class="click-button">忘记密码</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

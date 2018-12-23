@@ -1,0 +1,49 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<aspnetV2.Models.全部课程教材对照视图>
+@{
+    ViewBag.Title = "教师 - 课程中心";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<!--
+    非Post部分：单纯的展示课程
+-->
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>教师 - 展示课程</h2>
+</div>
+<div class="book-shelf">
+    <div class="book-classfication">课程概览<span style="color: white">CLASS</span></div>
+    <!--
+        book-item是教材栏，显示有教材图片、教材名称、课程操作（管理员特有），使用@foreach展示全部内容
+        需要后台将大一到大四的全部课程放入ViewData或者ViewBag中传入前端
+    -->
+    @foreach (var item in Model)
+    {
+        <div class="book-shelf-space">
+            <div class="book-item">
+                <div class="book-image">
+                    <img src="~/images/CourseBooks/@item.教材图片路径" />
+                </div>
+                <div class="book-name">@item.课程名称</div>
+                <div class="operation">
+                    <div>@Html.ActionLink("详情", "CourseDetail", new { courseId = item.课程代码 })</div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="clearfix"></div>
+    @Html.PagedListPager(Model, page => Url.Action("ShowCourse", new { page = page }))
+</div>
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        LocateBody();
+        if ("@ViewBag.Message" != "") {
+            alert("@ViewBag.Message");
+        }
+    }
+</script>

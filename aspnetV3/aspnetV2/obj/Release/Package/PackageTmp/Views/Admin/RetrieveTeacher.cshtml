@@ -1,0 +1,66 @@
+﻿@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<aspnetV2.Models.教师详细信息视图>
+@{
+    ViewBag.Title = "RetrieveTeacher";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Student/StudentInfo.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Teacher/ShowClassInfo.css" rel="stylesheet" type="text/css" />
+</head>
+<div class="show-header">
+    <h2>管理员 - 查看教师信息</h2>
+</div>
+
+<div class="container extra-padding">
+    @foreach (var item in Model)
+    {
+        <div class="item-frame">
+            <div class="item-image">
+                <img src="~/images/TeacherPicture/@item.证件照路径" />
+            </div>
+            <div class="item-detail">
+                <div class="short-info info-distance item-hide-overflow">
+                    <span class="label-td">教师姓名：</span>@item.教师姓名
+                </div>
+                <div class="shorter-info info-distance item-hide-overflow">
+                    <span class="label-td">性别：</span>@item.性别
+                </div>
+                <div class="long-info info-distance item-hide-overflow">
+                    <span class="label-td">教师工号：</span>@item.教师工号
+                </div>
+                <div class="clearfix"></div>
+                <div class="long-info info-distance item-hide-overflow">
+                    <span class="label-td">学校：</span>@item.学校名称
+                </div>
+                <div class="long-info info-distance item-hide-overflow">
+                    <span class="label-td">院系：</span>@item.院系名称
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="operation">
+                <ul>
+                    <li id="detail">@Html.ActionLink("详细", "TeacherInfo", new { teacherId = item.教师工号 })</li>
+                    <li id="edit">@Html.ActionLink("修改", "EditTeacherInfo", new { teacherId = item.教师工号 })</li>
+                    <li id="delete">@Html.ActionLink("删除", "DeleteTeacher", new { teacherId = item.教师工号 }, new { @onclick = "return confirm('确认删除？')" })</li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+   @Html.PagedListPager(Model, page => Url.Action("RetrieveTeacher", new { page = page }))
+</div>
+
+<script src="~/scripts/customjs/locateBody.js"></script>
+<script>
+    window.onload = function () {
+        if ('@Session["account"]' == "请先登录") {
+            top.location.href = '/Login/Login';
+        }
+        LocateBody();
+    }
+</script>

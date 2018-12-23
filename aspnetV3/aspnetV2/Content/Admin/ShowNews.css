@@ -1,0 +1,8 @@
+﻿.time-column{
+    width: 100%;
+    height: 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+}

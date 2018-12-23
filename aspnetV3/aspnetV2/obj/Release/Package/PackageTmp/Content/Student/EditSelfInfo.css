@@ -1,0 +1,23 @@
+﻿td{
+    text-align: right;
+}
+.file-upload{
+    width : 100%;
+    height: 100%;
+    border: dotted 0.1em rgba(30, 90, 0, 1);
+    margin-left: 2.5em;
+    line-height: 10em;
+    vertical-align: middle;
+    border-radius: 0.5em;
+    text-align: center;
+    overflow: hidden;
+}
+    .file-upload input {
+        height: 100%;
+        width: 100%;
+        /*opacity: 0;*/
+        margin-right: -1.5em;
+    }
+.drop-down-list{
+    text-align: center;
+}

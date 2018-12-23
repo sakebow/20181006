@@ -1,0 +1,7 @@
+﻿/* label全部润色 */
+label{
+    font-size: 1.5em;
+    padding-bottom: 0.25em;
+    padding-top: 0.25em;
+    white-space: nowrap;
+}

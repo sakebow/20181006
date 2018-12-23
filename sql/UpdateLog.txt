@@ -24,3 +24,13 @@ My teacher said all early version were so messy that he would never like to make
 After my teacher told me a lot of the basics of database, I suddenly realized my faults.
 So, here's my th version.
 Hoping things will be better.
+
+-- UPDATED ON Dec.23th 2018
+Version 5 here already.
+Maybe there's still a lot of mistakes.
+For one thing is that there's no tables to record every actions in system such as delete, insert and update some of the columns or tables.
+For another is that all actions are writen in VS, resulting in very slow response time.
+Moreover, some functions are designed very unfriendly, such as the switch of system. When a Admin switch the switch off or on, the status will be written in a txt file.
+Very strange, isn't it? Besides, if the switch is off, anyone can not sign up...
+But damn it all, it can only be used in studying.
+Hoping you will have fun.

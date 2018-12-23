@@ -1,0 +1,65 @@
+﻿@model aspnetV2.Models.全部课程教材对照视图
+@{
+    ViewBag.Title = "管理员 - 课程细节";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/Content/Admin/ShowCourse.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CreateNews.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/CourseDetail.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Admin/AdminLayout.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/customjs/locateBody.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            if ('@Session["account"]' == "请先登录") {
+                top.location.href = '/Login/Login';
+            }
+            if ("@ViewBag.ErrorMessage" != "") {
+                alert("@ViewBag.ErrorMessage");
+            }
+            LocateBody();
+        }
+    </script>
+
+</head>
+
+<div class="show-header">
+    <h2>管理员 - 课程细节</h2>
+</div>
+
+<div class="course-content">
+    <div class="course-book-image">
+        <img src="~/images/CourseBooks/@Model.教材图片路径" />
+    </div>
+    <table class="table-view-book-detail">
+        <tr>
+            <td><label>课程名称</label></td>
+            <td>@Model.课程名称</td>
+        </tr>
+        <tr>
+            <td><label>课程学分</label></td>
+            <td>@Model.课程学分</td>
+        </tr>
+        <tr>
+            <td><label>上课学年</label></td>
+            <td>@Model.课程上课学年</td>
+        </tr>
+        <tr>
+            <td><label>教材名称</label></td>
+            <td>@Model.教材名称</td>
+        </tr>
+        <tr>
+            <td><label>出版社名称</label></td>
+            <td>@Model.出版社名称</td>
+        </tr>
+    </table>
+    <div class="clearfix"></div>
+</div>
+
+
+<label>课程简介</label>
+<div class="detail-info">
+    @Html.Raw(@ViewBag.Line)
+</div>
+    
